@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self';">
+  <link rel="stylesheet" href="./css/index.css">
+  <script defer type="module" src="./js/utils/epfdCalculator.js"></script>
+  <script defer type="module" src="./js/EarthStation.js"></script>
+  <script defer type="module" src="./js/SatelliteObject.js"></script>
+  <script defer type="module" src="./js/EarthObject.js"></script>
+  <script defer type="module" src="./js/Constant.js"></script>
+  <script defer type="module" src="./js/Canvas.js"></script>
+  <script defer type="module" src="./js/UI.js"></script>
+  <script defer type="module" src="./js/render.js"></script>
+  <title>Satellite Playground</title>
+</head>
+
+<body>
+  <header>
+    <div class="window-icon">
+      <i class="fa fa-times"></i>
+      <i class="fa fa-window-maximize"></i>
+      <i class="fa fa-window-minimize"></i>
+    </div>
+    <div class="app-name">
+      <span>FYP</span>
+    </div>
+  </header>
+  <div class="container">
+    <div class="left">
+      <div class="card-container">
+        <div class="card" id="epfd-calculation">
+          epfd calculation
+        </div>
+        <div class="card" id="lb-calculation">
+          link budget
+        </div>
+      </div>
+      <div class="version">
+        Version 1.0.0
+      </div>
+    </div>
+    <div class="right">
+      <div class="user-input" id="user-input-lb">
+        <div class="lb-navbar">
+          <div class="circle active" id="lborbitbtn">
+            <p>Orbit</p>
+          </div>
+          <div class="circle" id="frequency">
+            <p>frequency</p>
+          </div>
+          <div class="circle" id="transmitter">
+            <p>Transmitter</p>
+          </div>
+          <div class="circle" id="receiver">
+            <P>Receivers</P>
+          </div>
+          <div class="circle" id="antenna">
+            <p>Antenna Gain</p>
+          </div>
+          <div class="circle" id="antenna-pointing">
+            <p>Ant Pointing</p>
+          </div>
+          <div class="circle" id="antenna-polarization">
+            <p>Ant Polarization Losses</p>
+          </div>
+          <div class="circle" id="atmos-ionos">
+            <p>Additional Losses</p>
+          </div>
+          <div class="circle" id="modulation-method">
+            <p>Modulation Method</p>
+          </div>
+        </div>
+        <div class="lb-input">
+          <div class="lbcontainer active">
+            <select name="Orbit-selector" id="">
+              <option value="0">Select an Orbit:</option>
+              <option value="1">LEO</option>
+              <option value="2">GEO</option>
+            </select>
+            <div class="orbitcard active">
+              <h1>LEO Orbit Parameters</h1>
+              <form action="">
+                <div>
+                  <label for="">Apogee (km)</label>
+                  <input type="number" value="805" id="lbapogee">
+                </div>
+                <div><label for="">Perigee (km)</label>
+                  <input type="number" value="795" id="lbperigee">
+                </div>
+                <div><label for="">Inclination (degree)</label>
+                  <input type="number" value="98.61" id="lbinclination">
+                </div>
+                <div><label for="">Argument of Perigee (degree)</label>
+                  <input type="number" value="180.0" id="lbaugperigee">
+                </div>
+                <div><label for="">RAAN (degree)</label>
+                  <input type="number" value="123.7" id="lbraan">
+                </div>
+                <div><label for="">Mean Anomaly (degree)</label>
+                  <input type="number" value="0" id="lbmo">
+                </div>
+                <div><label for="">Elevation Angle (degree)</label>
+                  <input type="number" value="5" id="lbelevation">
+                </div>
+                <input type="submit" value="next">
+              </form>
+              <img src="../images/lborbit.png" alt="">
+            </div>
+            <div class="orbitcard active">
+              <h1>GEO Orbit Parameters</h1>
+              <form id="geo-orbit">
+                <div>
+                  <h3>Uplink</h3>
+                  <div>
+                    <label>User Latitude</label>
+                    <input type="number" value="19.062">
+                  </div>
+                  <div><label>User Longitude</label>
+                    <input type="number" value="72.874">
+                  </div>
+                  <div><label>Spacecraft Slot(Longitude)</label>
+                    <input type="number" value="89.5">
+                  </div>
+                </div>
+                <div>
+                  <h3>Downlink</h3>
+                  <div><label>User Latitude</label>
+                    <input type="number" value="17.492">
+                  </div>
+                  <div><label>User Longitude</label>
+                    <input type="number" value="78.466">
+                  </div>
+                  <div><label>Spacecraft Slot (Longitude)</label>
+                    <input type="number" value="89.5">
+                  </div>
+                </div>
+                <div>
+                  <input type="submit" value="next">
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="lbcontainer">
+            <form action="" id="lbfrequency">
+              <div>
+                <div>
+                  <label for="">Uplink Frequency (MHz)</label>
+                  <input type="number" value="145.80">
+                </div>
+                <div>
+                  <label for="">Uplink Path Loss</label>
+                  <input type="number" readonly>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <label for="">Downlink Frequency (MHz)</label>
+                  <input type="number" value="437.45">
+                </div>
+                <div>
+                  <label for="">Downlink Path Loss</label>
+                  <input type="number" readonly>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="lbcontainer">
+            <div class="transmitter" id="lbuptransmitter">
+              <div id="lbuptx"></div>
+              <div id="lbuplinea">
+                <input type="text">
+              </div>
+              <div id="lbupfil"></div>
+              <div id="lbuplineb">
+                <input type="text">
+              </div>
+              <div id="lbupdev"></div>
+              <div id="lbuplinec">
+                <input type="text">
+              </div>
+              <div id="lbupant"></div>
+              <div id="transmitterpower">
+                <label>Transmitter Power (W)</label>
+                <input type="text">
+                <label>Transmitter Power (dB)</label>
+                <input type="text" readonly>
+              </div>
+              <div id="otherlosses">
+                <label for="">Cabel loss / meter (dB)</label>
+                <input type="text">
+                <label for=""># of connectors</label>
+                <input type="text">
+                <label for="">Ant. Mismatch Losses (dB)</label>
+                <input type="text">
+              </div>
+            </div>
+            <div class="transmitter"></div>
+          </div>
+          <div class="lbcontainer">
+            <div class="receiver"></div>
+            <div class="receiver"></div>
+          </div>
+          <div class="lbcontainer">
+            <div class="antenna"></div>
+            <div class="antenna"></div>
+          </div>
+          <div class="lbcontainer">
+            <div class="pointing"></div>
+            <div class="pointing"></div>
+          </div>
+          <div class="lbcontainer">
+            <div class="polarization"></div>
+            <div class="polarization"></div>
+          </div>
+          <div class="lbcontainer">
+            <form action=""></form>
+          </div>
+          <div class="lbcontainer">
+            <div class="modulation"></div>
+            <div class="modulation"></div>
+          </div>
+        </div>
+      </div>
+      <div class="user-input active" id="user-input-epfd">
+        <form class="form-control" id="form-epfd">
+          <h3>NGSO Satellite</h3>
+          <div>
+            <label>Apogee (km):</label>
+            <input type="number" value="600" id="ra" required>
+          </div>
+          <div>
+            <label>Perigee (km):</label>
+            <input type="number" value="600" id="rp" required>
+          </div>
+          <div>
+            <label>Orbit inclination (degree): </label>
+            <input type="number" value='89' id="i" required>
+          </div>
+          <div>
+            <label>Longitude of ascending node (degree): </label>
+            <input type="number" value='0' id="O" required>
+          </div>
+          <div>
+            <label>Argument of perigee (degree): </label>
+            <input type="number" value='0' id="w" required>
+          </div>
+          <div>
+            <label>True anomaly (degree): </label>
+            <input type="number" value='0' id="v" required>
+          </div>
+          <div>
+            <label>Downlink (MHz): </label>
+            <input type="number" value='18' id="fdown" required>
+          </div>
+          <div>
+            <label>Satellite pfd mask (xml format): </label>
+            <input type="file" id='xmlfile' required accept=".xml">
+          </div>
+          <h4>GSO Ground Station Parameters</h4>
+          <div>
+            <label>Longtitude:</label>
+            <input type="number" value='101.183052' id="lon" required>
+          </div>
+          <div>
+            <label>Latitude:</label>
+            <input type="number" value='2.023030' id="lat" required>
+          </div>
+          <div>
+            <label>Antenna dish diameter (m):</label>
+            <input type="number" value='5' id="dish" required>
+          </div>
+          <div>
+            <label>Antenna gain at boresight(dBi):</label>
+            <input type="number" value='51' id="gr" required>
+          </div>
+          <h3>Run time parameters</h3>
+          <div>
+            <label>Required number of simulation during delta T:</label>
+            <input type="number" value='3' name="" id="nhit">
+          </div>
+          <input type="submit" value="Simulate" class="btn black" />
+        </form>
+        <div id="canvas">
+          <div id="framerate"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

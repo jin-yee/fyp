@@ -1,0 +1,22 @@
+#user-input-epfd {
+    display: flex;
+    flex-direction: row;
+}
+
+#user-input-epfd form {
+    flex: 2;
+    display: table;
+}
+
+#user-input-epfd div {
+    flex: 3;
+}
+
+#user-input-epfd form div {
+    flex-grow: 2;
+    display: table-row;
+}
+
+#user-input-epfd form label, #user-input-epfd form input {
+    display: table-cell;
+}

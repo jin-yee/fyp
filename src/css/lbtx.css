@@ -1,0 +1,96 @@
+.transmitter {
+    display: grid;
+    grid-template-columns: fit-content(5%);
+    gap: 10px 0;
+    place-items: center;
+}
+
+#lbuptx {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    height: 100px;
+    border-radius: 5px 5px 5px 5px;
+    background: red;
+    grid-column: 1;
+    grid-row: 2;
+}
+
+#lbuptx::after {
+    content: 'Transmitter';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#lbupfil {
+    width: 150px;
+    height: 100px;
+    transform: skew(10deg);
+    background: red;
+    grid-column: 3;
+    grid-row: 2;
+}
+
+#lbupfil::after {
+    content: 'Filter';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#lbupdev {
+    position: relative;
+    width: 120px;
+    height: 60px;
+    border-radius: 5px 5px 5px 5px;
+    background: red;
+    grid-column: 5;
+    grid-row: 2;
+}
+
+#lbupdev::after {
+    content: 'Other Devices';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#lbupant {
+    position: relative;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-top: 100px solid red;
+    grid-column: 6;
+    grid-row: 1;
+    z-index: 2;
+}
+
+#lbuplinea {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+#lbuplineb {
+    grid-column: 4;
+    grid-row: 2;
+}
+
+#lbuplinec {
+    grid-column: 6;
+    grid-row: 2;
+}
+
+#transmitterpower {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+#otherlosses {
+    grid-column: 2 / 6;
+    grid-row: 3;
+}

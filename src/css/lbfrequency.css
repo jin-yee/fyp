@@ -1,0 +1,26 @@
+#lbfrequency {
+    display: grid;
+}
+
+#lbfrequency div {
+    display: table;
+}
+
+#lbfrequency div div {
+    display: table-row;
+}
+
+#lbfrequency div div label,
+#lbfrequency div div input {
+    display: table-cell;
+}
+
+#lbfrequency > div:nth-child(1) {
+    grid-column-start: 1;
+    grid-column-end: 1;
+}
+
+#lbfrequency > div:nth-child(2) {
+    grid-column-start: 2;
+    grid-column-end: 2;
+}

@@ -1,0 +1,54 @@
+.lb-input > div:nth-of-type(1) { 
+    display: flex;
+    flex-direction :column;
+}
+
+.lb-input > div:nth-of-type(1) select{ 
+    width: fit-content;
+}
+
+.orbitcard {
+    height: 80px;
+    overflow: hidden;
+    display: grid;
+    gap: 10px;
+}
+
+
+.orbitcard.active {
+    height: 100%;
+}
+
+.orbitcard form {
+    display: table;
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+.orbitcard form div{
+    display: table-row;
+}
+
+.orbitcard form label,
+.orbitcard form input {
+    display: table-cell;
+}
+
+.orbitcard img {
+    grid-column-start: 3;
+    grid-column-end: 3;
+}
+
+#geo-orbit {
+    display: grid;
+}
+
+#geo-orbit > div:nth-child(1) {
+    grid-column-start: 1;
+    grid-column-end: 1;
+}
+
+#geo-orbit > div:nth-child(2) {
+    grid-column-start: 2;
+    grid-column-end: 2;
+}

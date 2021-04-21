@@ -1,0 +1,127 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,500;0,700;1,300&display=swap');
+@import url('./header.css');
+@import url('./inputform.css');
+@import url('./canvas.css');
+@import url('./lbinput.css');
+@import url('./epfdform.css');
+@import url('./lborbit.css');
+@import url('./lbfrequency.css');
+@import url('./lbtx.css');
+:root {
+    font-size: 14px;
+}
+
+* {
+    font-family: Ubuntu, Helvetica, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+*::-webkit-scrollbar {
+    width: 0.2rem;
+}
+
+*::-webkit-scrollbar-track {
+    background: #777;
+}
+
+header {
+    height: 1rem;
+    padding: 0.5rem;
+    width: 100vw;
+    position: fixed;
+    background-color: #222;
+    color: #fff;
+    top: 0;
+    -webkit-app-region: drag;
+}
+
+.window-icon {
+    position: absolute;
+    top: 0.2rem;
+    left: 1.2rem;
+}
+
+.window-icon i {
+    margin-right: 1rem;
+}
+
+.app-name {
+    position: absolute;
+    top: 0.4rem;
+    right: 4rem;
+}
+
+.container {
+    margin-top: 2rem;
+    position: relative;
+    height: 100vh;
+}
+
+.left {
+    width: 15.2rem;
+    height: calc(100vh - 4rem);
+    padding: 1rem 0.4rem;
+    position: fixed;
+    background-color: #333;
+    transition: width 0.5s ease;
+}
+
+.version {
+    color: white;
+    position: absolute;
+    bottom: 1rem;
+    left: 20px;
+}
+
+.right {
+    position: fixed;
+    color: honeydew;
+    margin-left: 16rem;
+    height: calc(100vh - 4rem);
+    width: calc(100vw - 18rem);
+    padding: 1rem;
+    background-color: #444;
+    display: flex;
+    flex-direction: row;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card {
+    display: flex;
+    text-transform: uppercase;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    height: 4.5rem;
+    background-color: #444;
+    margin: 0.3rem 0;
+    border-radius: 0.4rem;
+    transition: background-color 0.3s ease-in;
+}
+
+.card:hover {
+    background-color: seashell;
+    color: red;
+}
+
+@media screen and (max-width: 1200px) {
+    .left {
+        width: 10rem;
+    }
+
+    .right {
+        margin-left: 10.5rem;
+        width: calc(100vw - 11rem);
+    }
+}
