@@ -1,5 +1,12 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, webContents } = require('electron');
 const path = require('path');
+const os = require('os')
+const { pfd, epfdCalculator } = require('../js/utils/epfdCalculator')
+const { Worker, isMainThread, workerData, parentPort } = require('worker_threads')
+
+//set env
+process.env.NODE_ENV = 'development'
+const isDev = process.env.NODE_ENV === 'development' ? true : false
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
@@ -9,8 +16,6 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
@@ -18,14 +23,34 @@ const createWindow = () => {
     }
   });
 
+  //make it fullscreen
+  mainWindow.fullScreen = mainWindow.isFullScreen ? true : false;
+
   // and load the index.html of the app.
   mainWindow.loadFile(path.join(__dirname, '../index.html'));
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  if (isDev) {
+    mainWindow.webContents.openDevTools();
+  }
 
-  ipcMain.on('pornhub', (event, arg) => {
-    console.log(arg)
+  // Register ipc event here
+  ipcMain.on('epfd-send', (event, arg) => {
+    const newArg = Object.assign({ appPath: app.getAppPath() }, arg)
+    return new Promise((resolve, reject) => {
+      const worker = new Worker('./src/process/subprocess.js', {
+        workerData : newArg
+      });
+      worker.on('message', (value) => {
+        mainWindow.webContents.send('epfd-reply', {message :'done'})
+        resolve()
+      })
+      worker.on('error', reject)
+      worker.on('exit', (code) => {
+        if (code !== 0)
+          reject(new Error(`Worker stopped with exit code ${code}`))
+      })
+    })
   })
 };
 

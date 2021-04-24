@@ -34,9 +34,9 @@
         <div class="card" id="epfd-calculation">
           epfd calculation
         </div>
-        <div class="card" id="lb-calculation">
+        <!-- <div class="card" id="lb-calculation">
           link budget
-        </div>
+        </div> -->
       </div>
       <div class="version">
         Version 1.0.0
@@ -225,69 +225,83 @@
         </div>
       </div>
       <div class="user-input active" id="user-input-epfd">
-        <form class="form-control" id="form-epfd">
-          <h3>NGSO Satellite</h3>
-          <div>
-            <label>Apogee (km):</label>
-            <input type="number" value="600" id="ra" required>
+        <form>
+          <button class="collapsible" type="button">
+            <h3>NGSO Satellite</h3>
+          </button>
+          <div class="content">
+            <div>
+              <label>Apogee (km):</label>
+              <input type="number" value="600" id="ra" required>
+            </div>
+            <div>
+              <label>Perigee (km):</label>
+              <input type="number" value="600" id="rp" required>
+            </div>
+            <div>
+              <label>Orbit inclination (degree): </label>
+              <input type="number" value='89' id="inc" required>
+            </div>
+            <div>
+              <label>Long. of ascending node (degree): </label><br>
+              <input type="number" value='0' id="O" required>
+            </div>
+            <div>
+              <label>Argument of perigee (degree): </label>
+              <input type="number" value='0' id="w" required>
+            </div>
+            <div>
+              <label>True anomaly (degree): </label>
+              <input type="number" value='0' id="v" required>
+            </div>
+            <div>
+              <label>Downlink Freq (GHz): </label>
+              <input type="number" value='18' id="fdown" required>
+            </div>
+            <div>
+              <label>Satellite pfd mask (xml format): </label>
+              <input type="file" id='xmlfile' accept=".xml" required >
+            </div>
           </div>
-          <div>
-            <label>Perigee (km):</label>
-            <input type="number" value="600" id="rp" required>
+          <button class="collapsible" type="button">
+            <h3>GSO Ground Station</h3>
+          </button>
+          <div class="content">
+            <div>
+              <label>Longtitude:</label>
+              <input type="number" value='101.183052' id="lon" required>
+            </div>
+            <div>
+              <label>Latitude:</label>
+              <input type="number" value='2.023030' id="lat" required>
+            </div>
+            <div>
+              <label>Antenna dish diameter (m):</label>
+              <input type="number" value='5' id="dish" required>
+            </div>
+            <div>
+              <label>Antenna gain at boresight(dBi):</label>
+              <input type="number" value='51' id="gr" required>
+            </div>
           </div>
-          <div>
-            <label>Orbit inclination (degree): </label>
-            <input type="number" value='89' id="i" required>
+          <button class="collapsible" type="button">
+            <h3>Run time parameters</h3>
+          </button>
+          <div class="content">
+            <div>
+              <label>Required number of simulation during delta T:</label>
+              <input type="number" value='3' name="" id="nhit">
+            </div>
+            <div></div>
+            <button id="simulateBtn" type="submit">Simulate</button>
+            <button id="resetBtn" type="reset">Reset</button>
           </div>
-          <div>
-            <label>Longitude of ascending node (degree): </label>
-            <input type="number" value='0' id="O" required>
-          </div>
-          <div>
-            <label>Argument of perigee (degree): </label>
-            <input type="number" value='0' id="w" required>
-          </div>
-          <div>
-            <label>True anomaly (degree): </label>
-            <input type="number" value='0' id="v" required>
-          </div>
-          <div>
-            <label>Downlink (MHz): </label>
-            <input type="number" value='18' id="fdown" required>
-          </div>
-          <div>
-            <label>Satellite pfd mask (xml format): </label>
-            <input type="file" id='xmlfile' required accept=".xml">
-          </div>
-          <h4>GSO Ground Station Parameters</h4>
-          <div>
-            <label>Longtitude:</label>
-            <input type="number" value='101.183052' id="lon" required>
-          </div>
-          <div>
-            <label>Latitude:</label>
-            <input type="number" value='2.023030' id="lat" required>
-          </div>
-          <div>
-            <label>Antenna dish diameter (m):</label>
-            <input type="number" value='5' id="dish" required>
-          </div>
-          <div>
-            <label>Antenna gain at boresight(dBi):</label>
-            <input type="number" value='51' id="gr" required>
-          </div>
-          <h3>Run time parameters</h3>
-          <div>
-            <label>Required number of simulation during delta T:</label>
-            <input type="number" value='3' name="" id="nhit">
-          </div>
-          <input type="submit" value="Simulate" class="btn black" />
         </form>
         <div id="canvas">
-          <div id="framerate"></div>
         </div>
       </div>
     </div>
   </div>
 </body>
+
 </html>

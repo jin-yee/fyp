@@ -46,7 +46,8 @@
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0",
-    "three": "^0.127.0"
+    "three": "^0.127.0",
+    "xml2js": "^0.4.23"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.54",

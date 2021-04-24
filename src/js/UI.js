@@ -7,6 +7,8 @@ let lbinput = document.querySelector('.lb-input')
 let lbcontainers = Array.from(lbinput.children)
 let navbarchildren = Array.from(lbnavbar.children)
 
+var coll = Array.from(document.getElementsByClassName("collapsible"))
+
 function removeActiveClasses() {
     rightPanels.forEach(rightPanel => {
         rightPanel.classList.remove('active')
@@ -14,6 +16,20 @@ function removeActiveClasses() {
 }
 
 export default function UI() {
+
+    coll.forEach(col => {
+        col.addEventListener('click', () => {
+            col.classList.toggle("active")
+            var content = col.nextElementSibling
+            if (content.style.display === "grid") {
+                content.style.display = "none"
+            } else {
+                content.class
+                content.style.display = "grid"
+                content.style.width = "100%"
+            }
+        })
+    })
 
     buttons.forEach(button => {
         button.addEventListener('click', () => {

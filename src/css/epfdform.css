@@ -3,20 +3,40 @@
     flex-direction: row;
 }
 
-#user-input-epfd form {
-    flex: 2;
-    display: table;
+.content div label {
+    width: fit-content;
+}
+.content div input{
+    width: 80%;
 }
 
-#user-input-epfd div {
-    flex: 3;
+.collapsible {
+    background-color: #222;
+    color: #eee;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
 }
 
-#user-input-epfd form div {
-    flex-grow: 2;
-    display: table-row;
+.content {
+    display: none;
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 5px;
+    grid-gap:5px;
+    background-color: #555;
+    transition: all 0.3s ease;
 }
 
-#user-input-epfd form label, #user-input-epfd form input {
-    display: table-cell;
+.collapsible:hover {
+    background-color: #ccc;
+    color: #000;
+}
+
+#canvas {
+    width: 60%;
 }

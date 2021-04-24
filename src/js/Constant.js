@@ -7,7 +7,14 @@ const Constant = {
     fff: 6 / Math.pow(4.166667, -3),
     j2: 0.001082636,
     TE: 86164.09054,
-    lightSpeed: Math.pow(3, 8)
+    lightSpeed: 3* Math.pow(10, 8),
+    simulation : 0,
+    Visualize: () => {
+        if(Constant.simulation == 1)
+            Constant.simulation = 0
+        else
+            Constant.simulation = 1
+    }
 }
 
 export default Constant
