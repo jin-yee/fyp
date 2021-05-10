@@ -87,3 +87,9 @@ typings/
 
 # Electron-Forge
 out/
+
+# CSV file from simulation
+.csv
+
+.xlsm
+
